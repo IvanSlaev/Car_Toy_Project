@@ -1,15 +1,32 @@
-import static java.lang.Thread
+import java.lang.Thread;
+import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothServerSocket;
+import android.content.Intent;
+import android.app.Activity;
 
-private class AcceptThread extends Thread {
+class AcceptThread extends Thread {
     private final BluetoothServerSocket mmServerSocket;
 
     public AcceptThread() {
+        int REQUEST_ENABLE_BT;
+        REQUEST_ENABLE_BT = 1;
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        if (mBluetoothAdapter == null) {
+            // Device does not support Bluetooth
+        }
+
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
         // Use a temporary object that is later assigned to mmServerSocket
         // because mmServerSocket is final.
         BluetoothServerSocket tmp = null;
         try {
             // MY_UUID is the app's UUID string, also used by the client code.
-            tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
+            tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("name", 0);
         } catch (IOException e) {
             Log.e(TAG, "Socket's listen() method failed", e);
         }

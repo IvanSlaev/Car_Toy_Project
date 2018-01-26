@@ -19,15 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button bt_connect_button = findViewById(R.id.bt_button);
-
-        bt_connect_button.setOnClickListener(new View.OnClickListener() {
-            @Override
+        Button btButton = findViewById(R.id.bt_button);
+        btButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent btIntent = new Intent(v.getContext(), BluetoothActivity.class);
-                startActivityForResult(btIntent, 0);
+                Intent intent = new Intent(getApplicationContext(), BluetoothSearch.class);
+                startActivity(intent);
             }
         });
+
     }
 
     /**

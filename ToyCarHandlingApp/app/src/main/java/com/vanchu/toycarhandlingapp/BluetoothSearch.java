@@ -27,14 +27,5 @@ public class BluetoothSearch extends AppCompatActivity {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
-
-        while (mBluetoothAdapter == null) {
-            if (btConnectionTryCounter == 5) {
-                // Device doesn't support Bluetooth
-                break;
-            }
-
-            btConnectionTryCounter++;
-        }
     }
 }

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Button btButton = findViewById(R.id.bt_button);
         btButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BluetoothSearch.class);
+                Intent intent = new Intent(MainActivity.this, BluetoothSearch.class);
                 startActivity(intent);
             }
         });
